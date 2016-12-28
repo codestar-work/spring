@@ -55,6 +55,16 @@ public class Main {
 		}
 	}
 	
+	@RequestMapping("/home")
+	String showHome(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		if (member == null) {
+			return "redirect:/login";
+		} else {
+			return "home";
+		}
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
