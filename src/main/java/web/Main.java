@@ -3,6 +3,7 @@ import java.util.*;
 import java.security.*;
 import org.hibernate.*;
 import javax.servlet.http.*;
+import org.springframework.ui.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
@@ -48,7 +49,7 @@ public class Main {
 		
 		String e = sha512(password);
 		if (member.password.equals(e)) {
-			session.setAttribute("user", member);
+			session.setAttribute("member", member);
 			return "redirect:/home";
 		} else {
 			return "redirect:/login?Incorrect Password";
@@ -56,11 +57,12 @@ public class Main {
 	}
 	
 	@RequestMapping("/home")
-	String showHome(HttpSession session) {
-		Member member = (Member)session.getAttribute("user");
+	String showHome(HttpSession session, Model model) {
+		Member member = (Member)session.getAttribute("member");
 		if (member == null) {
 			return "redirect:/login";
 		} else {
+			model.addAttribute("member", member);
 			return "home";
 		}
 	}

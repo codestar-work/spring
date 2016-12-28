@@ -8,4 +8,5 @@ public class Member {
 	public String email;
 	public String password;
 	public String name;
+	public String getName() { return name; }
 }
