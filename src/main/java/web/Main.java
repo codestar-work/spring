@@ -1,7 +1,8 @@
 package web;
-
+import java.util.*;
 import java.security.*;
 import org.hibernate.*;
+import javax.servlet.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
@@ -36,8 +37,22 @@ public class Main {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	String checkLogin(String email, String password) {
-		return "redirect:/";
+	String checkLogin(String email, String password,
+			HttpSession session) {
+		Session database = factory.openSession();
+		Query query = database.createQuery(
+				"from Member where email = :x");
+		query.setParameter("x", email);
+		List<Member> result = query.list();
+		Member member = result.get(0);
+		
+		String e = sha512(password);
+		if (member.password.equals(e)) {
+			session.setAttribute("user", member);
+			return "redirect:/home";
+		} else {
+			return "redirect:/login?Incorrect Password";
+		}
 	}
 	
 	@Autowired
