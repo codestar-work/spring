@@ -2,8 +2,28 @@
 
 <div class="container">
 	
-	<form>
-		
+	<style>
+		form { 
+			max-width: 300px; 
+			margin: auto;
+		}
+		input { 
+			margin-bottom: 6px; 
+		}
+	</style>
+	<form method="post">
+		<h1>Register</h1>
+		<input class="form-control"
+			   name="email"
+			   placeholder="Email"
+			   autofocus>
+		<input class="form-control"
+			   name="password"
+			   placeholder="Password"
+			   type="password">
+		<input class="form-control"
+			   name="name"
+			   placeholder="User Name">
 		<button class="btn btn-primary"
 				type="submit">Register</button>
 	</form>

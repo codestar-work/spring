@@ -5,11 +5,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class Main {
-
-	@RequestMapping("/test") @ResponseBody
-	int test() {
-		return 555;
-	}
 	
 	@RequestMapping("/")
 	String showIndex() {
