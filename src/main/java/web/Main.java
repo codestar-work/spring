@@ -67,6 +67,12 @@ public class Main {
 		}
 	}
 	
+	@RequestMapping("/logout")
+	String showLogout(HttpSession session) {
+		session.removeAttribute("member");
+		return "logout";
+	}
+	
 	@Autowired
 	SessionFactory factory;
 

@@ -4,5 +4,32 @@
 		<title>My Web</title>
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/main.css">
+		<style>
+			#small-toolbar {
+			}
+			#large-toolbar {
+			}
+		</style>
 	</head>
 	<body>
+		<div class="container">
+			<div id="small-toolbar" 
+				 class="visible-xs-down hidden-sm-up">
+				<div class="btn-group">
+					<a href="/" class="btn btn-outline-primary">View</a>
+					<a href="/new" class="btn btn-outline-primary">New</a>
+				</div>
+			</div>
+			<div id="large-toolbar"
+				 class="hidden-xs-down visible-sm-up">
+				<div class="btn-group">
+					<a href="/" class="btn btn-outline-primary">View</a>
+					<a href="/login" class="btn btn-outline-primary">Log In</a>
+					<a href="/logout" class="btn btn-outline-primary">Log Out</a>
+					<a href="/register" class="btn btn-outline-primary">Register</a>
+					<a href="/new" class="btn btn-outline-primary">New</a>
+				</div>
+			</div>
+		</div>
+		
+		

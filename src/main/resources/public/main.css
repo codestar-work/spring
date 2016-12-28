@@ -5,3 +5,6 @@ form {
 input { 
 	margin-bottom: 6px; 
 }
+.btn-group {
+	padding-top:6px;
+}
