@@ -16,4 +16,10 @@ public class Main {
 		return "register";
 	}
 	
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	String saveUser(String email, String password, String name) {
+		
+		return "redirect:/login";
+	}
+	
 }
