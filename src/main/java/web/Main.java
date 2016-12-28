@@ -30,6 +30,16 @@ public class Main {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping("/login")
+	String showLogin() {
+		return "login";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	String checkLogin(String email, String password) {
+		return "redirect:/";
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
