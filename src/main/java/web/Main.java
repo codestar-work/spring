@@ -11,5 +11,14 @@ public class Main {
 		return 555;
 	}
 	
+	@RequestMapping("/")
+	String showIndex() {
+		return "index";
+	}
+	
+	@RequestMapping("/register")
+	String showRegister() {
+		return "register";
+	}
 	
 }
