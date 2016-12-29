@@ -5,6 +5,7 @@ import org.hibernate.*;
 import javax.servlet.http.*;
 import org.springframework.ui.*;
 import org.springframework.stereotype.*;
+import org.springframework.web.multipart.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 
@@ -84,7 +85,7 @@ public class Main {
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	String saveNewPost(String title, String detail,
-			HttpSession session) {
+			HttpSession session, MultipartFile file) {
 		Member m = (Member)session.getAttribute("member");
 		if (m == null) {
 			return "redirect:/login";

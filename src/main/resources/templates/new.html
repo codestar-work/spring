@@ -1,7 +1,7 @@
 <#include "header.html">
 
 <div class="container">
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 		<h1>New Topic</h1>
 		<input name="title"
 			   class="form-control"
@@ -12,6 +12,7 @@
 				  placeholder="Detail"
 				  rows="5"
 				  ></textarea>
+		<input type="file" name="photo">
 		<button class="btn btn-primary"
 				type="submit">Post</button>
 	</form>
