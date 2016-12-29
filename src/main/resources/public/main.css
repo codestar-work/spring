@@ -1,7 +1,7 @@
 form { 
 	max-width: 300px;
 }
-input { 
+input, textarea { 
 	margin-bottom: 6px; 
 }
 .btn-group {
