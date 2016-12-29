@@ -73,6 +73,15 @@ public class Main {
 		return "logout";
 	}
 	
+	@RequestMapping("/new")
+	String showNewPost(HttpSession session) {
+		if (session.getAttribute("member") == null) {
+			return "redirect:/login";
+		} else {
+			return "new";
+		}
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
