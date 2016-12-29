@@ -99,6 +99,14 @@ public class Main {
 		}
 	}
 	
+	@RequestMapping("/list")
+	String showAll(Model m) {
+		Session s = factory.openSession();
+		Query q = s.createQuery("from Topic");
+		m.addAttribute("data", q.list());
+		return "list";
+	}
+	
 	@Autowired
 	SessionFactory factory;
 

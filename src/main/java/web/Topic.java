@@ -10,4 +10,8 @@ public class Topic {
 	String photo;
 	@Column(name="user")
 	long member;
+	
+	public String getTitle() { return title; }
+	public String getDetail() { return detail; }
+	
 }
