@@ -149,7 +149,9 @@ public class Main {
 				if (m.code == t.member) {
 					t.title = title;
 					t.detail = detail;
-					s.saveOrUpdate(t);
+					s.beginTransaction();
+					s.update(t);
+					s.getTransaction().commit();
 					return "redirect:/home";
 				} else {
 					return "edit-error";
