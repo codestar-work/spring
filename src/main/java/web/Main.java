@@ -130,6 +130,34 @@ public class Main {
 		}
 	}
 	
+	@RequestMapping(value="/edit/{code}", method=RequestMethod.POST)
+	String saveTopic(@PathVariable long code, 
+			HttpSession session, 
+			String title, String detail) {
+		Member m = (Member)session.getAttribute("member");
+		if (m == null) {
+			return "redirect:/login";
+		} else {
+			Session s = factory.openSession();
+			Query q = s.createQuery("from Topic where code = :c");
+			q.setParameter("c", code);
+			List list = q.list();
+			if (list.size() == 0) {
+				return "edit-error";
+			} else {
+				Topic t = (Topic)list.get(0);
+				if (m.code == t.member) {
+					t.title = title;
+					t.detail = detail;
+					s.saveOrUpdate(t);
+					return "redirect:/home";
+				} else {
+					return "edit-error";
+				}
+			}
+		}
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
