@@ -1,8 +1,22 @@
 <#include "header.html">
 
+<style>
+	.item {
+		border-width: 1px;
+		border-color: lightgray;
+		border-style: solid;
+		margin-top: 10px;
+		padding: 5px;
+		border-radius: 10px;
+	}
+</style>
+
 <div class="container">
 	<#list data as d>
-		${d.title}
+		<div class="item">
+			<h3>${d.title}</h3>
+			<p>${d.detail}</p>
+		</div>
 	</#list>
 </div>
 
