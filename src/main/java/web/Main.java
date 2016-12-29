@@ -108,7 +108,7 @@ public class Main {
 	}
 	
 	@RequestMapping("/edit/{code}")
-	String editTopic(@PathVariable int code,
+	String editTopic(@PathVariable long code,
 			HttpSession session, Model model) {
 		Member m = (Member)session.getAttribute("member");
 		if (m == null) {
