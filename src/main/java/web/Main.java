@@ -82,6 +82,12 @@ public class Main {
 		}
 	}
 	
+	@RequestMapping(value="/new", method=RequestMethod.POST)
+	String saveNewPost(String title, String detail,
+			HttpSession session) {
+		
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
