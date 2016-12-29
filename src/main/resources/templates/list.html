@@ -9,6 +9,9 @@
 		padding: 5px;
 		border-radius: 10px;
 	}
+	img {
+		width: 50%;
+	}
 </style>
 
 <div class="container">
@@ -16,6 +19,10 @@
 		<div class="item">
 			<h3>${d.title}</h3>
 			<p>${d.detail}</p>
+			<#if d.photo ?? >
+				<img src="/photo/${d.photo}" >
+			</#if>
+			<br>
 			<#if d.member == member >
 				<a href="/edit/${d.code}">Edit</a>
 			</#if>
