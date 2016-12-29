@@ -107,6 +107,29 @@ public class Main {
 		return "list";
 	}
 	
+	@RequestMapping("/edit/{code}")
+	String editTopic(@PathVariable int code,
+			HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("member");
+		if (m == null) {
+			return "redirect:/login";
+		} else {
+			Session s = factory.openSession();
+			Query q = s.createQuery(
+				"from Topic where code = :c and user = :u");
+			q.setParameter("c", code);
+			q.setParameter("u", m.code);
+			List list = q.list();
+			if (list.size() == 0) {
+				return "edit-error";
+			} else {
+				Topic t = (Topic)list.get(0);
+				model.addAttribute("topic", t);
+				return "edit";
+			}
+		}
+	}
+	
 	@Autowired
 	SessionFactory factory;
 
