@@ -11,7 +11,9 @@ public class Topic {
 	@Column(name="user")
 	long member;
 	
-	public String getTitle() { return title; }
+	public String getTitle()  { return title; }
 	public String getDetail() { return detail; }
-	
+	public long getCode()     { return code; }
+	public long getMember()   { return member; }
+	public String getPhoto()  { return photo; }
 }
