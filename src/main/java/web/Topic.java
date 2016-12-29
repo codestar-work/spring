@@ -5,8 +5,9 @@ import javax.persistence.*;
 public class Topic {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	long code;
-	String topic;
+	String title;
 	String detail;
 	String photo;
-	long user;
+	@Column(name="user")
+	long member;
 }

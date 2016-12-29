@@ -85,7 +85,18 @@ public class Main {
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	String saveNewPost(String title, String detail,
 			HttpSession session) {
-		
+		Member m = (Member)session.getAttribute("member");
+		if (m == null) {
+			return "redirect:/login";
+		} else {
+			Topic t = new Topic();
+			t.title = title;
+			t.detail = detail;
+			t.member = m.code;
+			Session s = factory.openSession();
+			s.save(t);
+			return "redirect:/home";
+		}
 	}
 	
 	@Autowired
