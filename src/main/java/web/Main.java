@@ -100,10 +100,16 @@ public class Main {
 	}
 	
 	@RequestMapping("/list")
-	String showAll(Model m) {
+	String showAll(Model m, HttpSession session) {
 		Session s = factory.openSession();
 		Query q = s.createQuery("from Topic");
 		m.addAttribute("data", q.list());
+		Member member = (Member)session.getAttribute("member");
+		if (member == null) {
+			m.addAttribute("member", 0);
+		} else {
+			m.addAttribute("member", member.code);
+		}
 		return "list";
 	}
 	
