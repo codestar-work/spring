@@ -1,4 +1,5 @@
 package web;
+import java.io.*;
 import java.util.*;
 import java.security.*;
 import org.hibernate.*;
@@ -85,17 +86,40 @@ public class Main {
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	String saveNewPost(String title, String detail,
-			HttpSession session, MultipartFile file) {
+			HttpSession session, MultipartFile photo) {
 		Member m = (Member)session.getAttribute("member");
 		if (m == null) {
 			return "redirect:/login";
 		} else {
-			Topic t = new Topic();
-			t.title = title;
-			t.detail = detail;
-			t.member = m.code;
-			Session s = factory.openSession();
-			s.save(t);
+			if (photo.isEmpty()) {
+				Topic t = new Topic();
+				t.title = title;
+				t.detail = detail;
+				t.member = m.code;
+				Session s = factory.openSession();
+				s.save(t);
+			} else {
+				String name = UUID.randomUUID() + ".jpg";
+				
+				Topic t  = new Topic();
+				t.title  = title;
+				t.detail = detail;
+				t.member = m.code;
+				t.photo  = name;
+				Session s = factory.openSession();
+				s.save(t);
+				
+				name = "./src/main/resources/public/photo/" + name;
+				try {
+					FileOutputStream fos = new 
+						FileOutputStream(name);
+					byte [] data = photo.getBytes();
+					for (int i = 0; i < data.length; i++) {
+						fos.write(data[i]);
+					}
+					fos.close();
+				} catch (Exception e) { }
+			}
 			return "redirect:/home";
 		}
 	}
